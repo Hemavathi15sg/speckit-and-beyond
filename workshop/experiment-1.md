@@ -362,10 +362,10 @@ Time saved: 15 minutes of manual issue creation, with 30-second quality check.
 **PR #2** with null check fix - technically correct, will stop crashes immediately.
 
 **Strategic Question:**
-Before merging, should we understand if this is the right approach? Is search.py clean or a monolith where patches hide deeper problems?
+Before merging, should we check for deeper architectural issues? Is search.py clean or a monolith where patches hide problems?
 
 **Current Time:** 3:20 PM  
-**Status:** Crisis documented. PR ready. Should we merge it?
+**Status:** Crisis documented. PR ready. Need to check architecture first.
 
 ---
 
@@ -376,5 +376,5 @@ Before merging, should we understand if this is the right approach? Is search.py
 - ✅ **PR #2** ready with null check fix
 - ❓ Should we **merge PR #2** or **investigate deeper**?
 
-**Next Step:** Create a **Custom Architect Agent** to review PR #2 and analyze if we need architectural refactor.
+**Next Step:** Create a **Custom Architect Agent** to analyze search system architecture for deeper issues.
 

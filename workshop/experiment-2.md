@@ -17,13 +17,13 @@
 - ⚠️ If symptom of deeper issues, just patching
 
 **Investigation (Hold PR):**
-- ✅ Understand full scope first
+- ✅ Check architecture for deeper problems first
 - ✅ Refactor once vs patch repeatedly
 - ⚠️ Takes longer, more risk
 
 **Question:** Is search.py a clean 200-line file or a 1000+ line monolith?
 
-**Mission:** Create a **Custom Architect Agent** to review PR #2 and make informed merge decision.
+**Mission:** Create a **Custom Architect Agent** to analyze search system architecture and discover any deeper issues.
 
 ---
 
