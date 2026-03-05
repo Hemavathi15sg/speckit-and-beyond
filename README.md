@@ -18,7 +18,6 @@ Five agent capabilities working together in a continuous workflow:
 
 **Agent Skills** → Autonomous problem analysis and documentation  
 **Custom Agents** → Specialized expertise (architecture, security, domain knowledge)  
-**Instruction Files** → Domain intelligence that makes all agents smarter  
 **Spec Kit** → Governance and specification-driven implementation  
 **Copilot CLI** → Multi-step automation and orchestration  
 
