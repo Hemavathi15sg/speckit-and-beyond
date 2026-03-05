@@ -1,5 +1,5 @@
 """
-Test script to reproduce Issue #247
+Test script to reproduce Issue #447
 
 This demonstrates the production bug that crashes search
 for users without dietary restrictions.
@@ -11,10 +11,10 @@ from uuid import uuid4
 
 def test_bug_with_null_dietary():
     """
-    Reproduce Issue #247: TypeError when dietary_restrictions is None
+    Reproduce Issue #447: TypeError when dietary_restrictions is None
     
     Expected: TypeError: 'NoneType' object is not iterable
-    Location: search.py, line 145
+    Location: search.py, line 447
     """
     print("🧪 Testing search with user who has dietary_restrictions=None...")
     print()
@@ -43,10 +43,10 @@ def test_bug_with_null_dietary():
         print("✅ Search succeeded!")
         print(f"Found {results['total']} recipes")
     except TypeError as e:
-        print("❌ CRASH! (This is Issue #247)")
+        print("❌ CRASH! (This is Issue #447)")
         print(f"Error: {e}")
         print()
-        print("Stack trace points to search.py line 145:")
+        print("Stack trace points to search.py line 447:")
         print("  for restriction in user.dietary_restrictions:")
         print("  TypeError: 'NoneType' object is not iterable")
         print()
@@ -115,7 +115,7 @@ def test_working_case():
 
 if __name__ == "__main__":
     print("="*60)
-    print("FlavorHub Issue #247 Reproduction Test")
+    print("FlavorHub Issue #447 Reproduction Test")
     print("="*60)
     print()
     print("This script demonstrates the production bug that affects")

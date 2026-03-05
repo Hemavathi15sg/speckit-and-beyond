@@ -2,7 +2,7 @@
 API Routes for FlavorHub Recipe Manager
 
 """
-from fastapi import APIRouter, HTTPException, Header
+from fastapi import APIRouter, HTTPException, Header, Query
 from typing import Optional
 from models import SAMPLE_USERS
 from search import search_recipes
@@ -26,7 +26,7 @@ def get_user_from_token(authorization: Optional[str] = Header(None)):
 @router.post("/search")
 async def search_endpoint(
     request_data: dict,
-    current_user = None  # Will be dependency injected
+    current_user: Optional[str] = Query(None)
 ):
     """
     Search recipes endpoint.
@@ -38,13 +38,19 @@ async def search_endpoint(
     
     Example request that crashes:
     {
-        "query": "pasta",
+        "query": "Bob",
         "dietary_restrictions": null,
         "cuisine": "Italian"
     }
     """
-    # Get user (in workshop: returns user with dietary_restrictions=None)
-    user = current_user or get_user_from_token()
+    # Map user name to actual user object
+    if current_user:
+        user_name_lower = current_user.lower()
+        user = next((u for u in SAMPLE_USERS if u.name.lower() == user_name_lower), None)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+    else:
+        user = get_user_from_token()
     
     try:
         # This is where it crashes!

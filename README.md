@@ -30,12 +30,11 @@ Five agent capabilities working together in a continuous workflow:
 ## ⏱️ The 2-Hour Timeline
 
 | Time | Experiment | Agent Capabilities | Outcome |
-|------|-----------|-------------------|---------|
+|------|-----------|-------------------|---------||
 | 3:00-3:20 | **Crisis Response** | Agent Skills + GitHub MCP | NULL_DIETARY_BUG documented with root cause |
 | 3:20-3:45 | **Root Cause** | Custom Agents | 1103-line monolith identified as systemic problem |
-| 3:45-4:18 | **Solution Design** | Instruction Files + Spec Kit | 4-module specification + technical plan complete |
-| 4:18-4:48 | **Implementation** | Copilot CLI + /speckit.implement | 4 modules generated, issues fixed |
-| 4:48-5:08 | **Validation** | /speckit.analyze + checklist | Production-ready with quality gates |
+| 3:45-4:48 | **Solution Design + Implementation** | Spec Kit + Copilot CLI + /speckit.implement | Complete specification, 4 modules generated, issues fixed |
+| 4:48-5:08 | **Validation & Quality Gates** | /speckit.analyze + checklist | Production-ready with quality gates verified |
 **System Modernized:** 4-module clean architecture, issues fixed, >80% test coverage
 
 ---
@@ -53,7 +52,7 @@ Five agent capabilities working together in a continuous workflow:
 
 ---
 
-## 🎯 The Story: 5 Connected Experiments
+## 🎯 The Story: 4 Connected Experiments
 
 ### **Experiment 1: Creating Order from Chaos** (20 min)
 **The Problem:** Production errors flooding in, no structured documentation  
@@ -67,19 +66,13 @@ Five agent capabilities working together in a continuous workflow:
 **You Learn:** Build custom Search Architect agent → scans entire codebase → discovers 1103-line monolith with God Object anti-pattern, 74 magic numbers, broken caching, and dead code  
 **Outcome:** Root cause identified: architectural refactor required, not band-aid patch
 
-### **Experiment 3: Designing the Solution** (25 min)
-**The Problem:** Need architectural refactor plan with governance to prevent regression  
-**Agents Used:** Instruction Files + Spec Kit (constitution → specify → tasks)  
-**You Learn:** Create search domain instruction file → establish governance constitution → generate detailed specification for 4-module refactor (validation, filtering, aggregation, formatting) → break into implementation tasks  
-**Outcome:** Complete blueprint for breaking 1103-line monolith into clean architecture
+### **Experiment 3: Solution Design & Implementation** (63 min)
+**The Problem:** Need architectural refactor plan + rapid implementation of 4 clean modules  
+**Agents Used:** Spec Kit (constitution → specify → plan → tasks → implement) + Copilot CLI + @workspace  
+**You Learn:** Establish governance constitution → generate detailed 4-module specification → create technical plan → break into tasks → use CLI for project setup → generate 4 modules with /speckit.implement → wire everything together with @workspace  
+**Outcome:** Complete blueprint AND implementation - 1103-line monolith refactored into 4 clean modules <300 lines each, both issues fixed (null handling + caching leak)
 
-### **Experiment 4: Rapid Implementation** (30 min)
-**The Problem:** Generate 4 clean modules from monolithic codebase in 30 minutes  
-**Agents Used:** Copilot CLI + /speckit.implement  
-**You Learn:** Use CLI for multi-file setup → use Spec Kit to generate 4 modules (validation_module.py, filtering_module.py, aggregation_module.py, formatting_module.py) from architectural spec → wire modules together with @workspace  
-**Outcome:** 1103-line monolith refactored into 4 modules <300 lines each, both issues fixed (null handling + caching leak)
-
-### **Experiment 5: Validation & Quality Gates** (20 min)
+### **Experiment 4: Validation & Quality Gates** (20 min)
 **The Problem:** Ensure solution actually meets standards before deployment  
 **Agents Used:** /speckit.analyze + /speckit.checklist  
 **You Learn:** Validate constitution compliance → identify gaps → generate quality checklist → systematically verify readiness  

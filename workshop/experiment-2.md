@@ -10,13 +10,7 @@
 - ✅ Assigned to @copilot → **PR #2 created** (null check fix)
 - ✅ Fix is **technically correct** - stops crashes
 
-**Before merging PR #2:**
-
-**Quick Fix (Merge):**
-- ✅ Deploys in 10 min, stops crashes
-- ⚠️ If symptom of deeper issues, just patching
-
-**Investigation (Hold PR):**
+**Investigation Further:**
 - ✅ Check architecture for deeper problems first
 - ✅ Refactor once vs patch repeatedly
 - ⚠️ Takes longer, more risk
@@ -34,18 +28,64 @@
 - ✅ Perform autonomous codebase-wide analysis
 - ✅ Identify systemic issues beyond surface symptoms
 
-**Agent Capability:** Custom Agents (specialized intelligence)
+---
+
+## � Why Custom Agents?
+
+**The Problem with Generic @copilot:**
+
+- ✅ Generic @copilot sees the bug → creates null check fix → done
+- ❌ Doesn't question if the codebase has deeper issues
+- ❌ Treats every bug as isolated
+
+**Result:** You get a **quick patch** but miss systemic problems. The monolith grows, technical debt accumulates, and the next bug requires another patch.
+
+**The Solution: Custom Agents**
+
+Let's create a **@search-architect** agent with specialized expertise to:
+- Analyze the entire search system architecture
+- Identify root causes at the design level
+- Recommend proper solutions, not just patches
 
 ---
 
-## 📝 Exercise 2.1: Build Search Architect Agent (10 min)
+## �📝 Exercise 2.1: Build Search Architect Agent (10 min)
 
 ### Task
 Create a custom agent that's an expert in search systems.
 
 ### Steps
 
-**2.1.1** Create `.github/agents/search-architect.agent.md`:
+**2.1.1** Create the custom agent using Copilot Chat UI:
+
+1. Open **GitHub Copilot Chat** (Ctrl+Shift+I or Cmd+Shift+I)
+
+2. Click the **⚙️ Configure** button (top-right of chat panel)
+
+3. Select **Custom Agents** from the menu
+
+   ![Configure Menu - Select Custom Agents](../../images/customagent.png)
+   *The Configure menu with Custom Agents option highlighted*
+
+4. Click **➕ New Custom Agent** button
+
+   ![New Custom Agent Button](../../images/newcustomagent.png)
+   *Select "New custom agent..." to create a specialized agent*
+
+5. In the file dialog, select location:
+
+   ![Select Location Dialog](../../images/githubcustomagent.png)
+   *Choose .github\agents as the location for your custom agent*
+   - Enter agent name: `search-architect`
+   - Click Save
+
+**Result:** VS Code creates `.github/agents/search-architect.agent.md` automatically
+
+---
+
+**2.1.2** Copy the agent definition:
+
+Replace the generated template with the following content:
 
 ```yaml
 ---
@@ -89,15 +129,12 @@ When analyzing search code, you autonomously:
 
 💡 **Important:** The top section (between `---`) is YAML frontmatter that VS Code uses to register the agent. The rest defines the agent's behavior.
 
-**2.1.2** Save the file and reload VS Code window:
-- Press `Ctrl+Shift+P` (Windows) or `Cmd+Shift+P` (Mac)
-- Type: `Developer: Reload Window`
-- Wait 30 seconds for the agent to register
+💡 **Optional - Configure Tools:** If your agent needs to perform actions (create files, run commands, etc.), you can enable specific tools in the frontmatter by uncommenting the `tools:` line and specifying which tools to enable. For analysis-only agents like search-architect, tools are not required.
 
-**2.1.3** Verify the agent is available:
-- Open Copilot Chat
-- Click the **Agent** dropdown (or press Ctrl+Shift+I)
-- Look for **search-architect** in the agents list
+   ![Configure Tools](../../images/configuretools.png)
+   *Tools can be enabled in agent configuration as needed*
+
+**2.1.3** Save the file and reload VS Code window
 
 ### What You Created
 A specialist agent with **deep domain expertise** in search systems.
@@ -111,9 +148,12 @@ Ask your architect agent to analyze the NULL_DIETARY_BUG deeply.
 
 ### Steps
 
-**2.2.1** Open Copilot Chat (Ctrl+Alt+I / Cmd+Opt+I)
+**2.2.1** Open Copilot Chat 
 
-**2.2.2** Click the **Agent** dropdown (or press Ctrl+Shift+I) and select **search-architect** from the list
+**2.2.2** Click the **Agent** dropdown and select **search-architect** from the list
+
+   ![Select Search Architect Agent](../../images/customarchitectagent.png)
+   *The search-architect custom agent available in the agents dropdown*
 
 **2.2.3** Enter your prompt:
 ```
@@ -129,79 +169,33 @@ Users complained about slow searches before this bug appeared.
 ```
 ARCHITECTURAL ANALYSIS - NULL_DIETARY_BUG
 
-Actual file: 1103 lines - TEXTBOOK GOD OBJECT ANTI-PATTERN
+Current State: 1103 lines - GOD OBJECT ANTI-PATTERN
 
-What's in this file (everything!):
-- Database connection management (hard-coded, no pooling)
-- Query parsing (3 versions - v1, v2, v3, only v3 used)
-- Input validation (none - accepts garbage)
+What's in this file:
+- Database connection, query parsing, input validation
 - Filtering logic (5 active + 3 deprecated versions)
 - Dietary restriction handling (THE BUG: Line 447)
-- Ranking algorithms (3 versions: basic, weighted_v2, hybrid_v3)
-- A/B testing variants (12 feature flags)
-- Response formatting (JSON + half-finished XML support)
-- Pagination (inefficient, loads everything in memory)
-- Caching layer (broken, memory leak - CACHE_LEAK_BUG)
-- Metrics collection (manual counters)
-- Debug logging (print statements everywhere)
+- Ranking algorithms, A/B testing, response formatting
+- Caching (broken, memory leak), metrics, debug logs
 
 CRITICAL ISSUES:
+1. Line 447: Null bug crashes 23% of users
+2. God Object: 1103 lines, untestable (0% coverage)
+3. Dead code: 300+ lines of deprecated filters/algorithms
+4. 74 magic numbers hard-coded
+5. Broken caching causing memory leaks
 
-1. Line 447: The null bug (crashes 23% of users)
-   Root cause: No validation + God object makes null checks impossible
-   
-2. God Object anti-pattern: 1103 lines doing everything
-   Impact: Untestable (0% coverage), unmaintainable
-   
-3. Dead code: 3 deprecated filter versions, 2 old ranking algorithms
-   Impact: Confusion about what's production vs experiment
-   
-4. 74 magic numbers: No constants, hard-coded everywhere
-   Impact: Can't tune without code changes
-   
-5. Broken caching: Memory leak, no eviction (CACHE_LEAK_BUG)
-   Impact: Service crashes after 8 hours uptime
-   
-6. Feature flag chaos: 12 flags, unclear which are active
-   Impact: Unknown production behavior
+RECOMMENDATION:
+Architectural refactor into 4 modules:
+- validation_module.py (input validation, null handling)
+- filtering_module.py (clean filter functions)
+- aggregation_module.py (ranking, caching fixed)
+- formatting_module.py (response formatting)
 
-RECOMMENDATION FOR 1103-LINE MONOLITH:
+Benefits: Each module <300 lines, testable, maintainable
+Effort: 3-4 days traditional, 2 hours with Spec Kit + Agents
 
-**ARCHITECTURAL REFACTOR required**
-
-Break into 4 modules:
-
-1. validation_module.py (200 lines)
-   - Input validation with Pydantic
-   - Null handling fixed at entry point
-   - Type safety enforced
-   
-2. filtering_module.py (300 lines)
-   - Clean filter functions (remove deprecated versions)
-   - Optimized filter ordering
-   - No database connection logic
-   
-3. aggregation_module.py (250 lines)
-   - Single ranking algorithm (remove experiments)
-   - Caching logic (fix memory leak)
-   - Metrics properly abstracted
-   
-4. formatting_module.py (150 lines)
-   - Response formatting
-   - Pagination (proper implementation)
-   - No business logic
-
-Benefits:
-- Each module <300 lines, single responsibility
-- Testable independently (can achieve >80% coverage)
-- Remove dead code and experiments
-- Fix caching and null bugs properly
-- Clear separation of concerns
-
-Estimated effort: 3-4 days (traditional approach)
-With Spec Kit + Agents: 2 hours (governed implementation)
-
-This IS the architectural crisis. Refactor is non-negotiable.
+This is an architectural crisis. Refactor is non-negotiable.
 ```
 
 ### What Just Happened
@@ -216,7 +210,7 @@ The agent analyzed the actual code and gave honest assessment:
 
 ---
 
-## 📝 Exercise 2.3: Learn Refactor Principles (For Education) (7 min)
+## 📝 Exercise 2.3: Learn Refactor Principles  (7 min)
 
 ### Task
 

@@ -46,7 +46,7 @@ TEAM NOTES:
 NEEDED (from @search-architect analysis):
 1. Break into 4 modules: validation, filtering, aggregation, formatting
 2. Add Pydantic validation layer
-3. Fix null handling (Issue #247)
+3. Fix null handling (Issue #447)
 4. Extract database connection to connection pool
 5. Remove dead code and obsolete experiments
 6. Add comprehensive test coverage
@@ -187,7 +187,7 @@ def parse_search_request(request_data: dict) -> dict:
     - No sanitization (SQL injection risk if we used real DB)
     - dietary_restrictions can be None (causes bug in filtering)
     
-    TODO: Replace with Pydantic models (Issue #247)
+    TODO: Replace with Pydantic models (Issue #447)
     """
     global search_count
     search_count += 1  # Manual metrics (should use proper monitoring)
@@ -436,7 +436,7 @@ def filter_by_dietary(recipes: List[Recipe], user: User) -> List[Recipe]:
     Quick fix: Add null check
     Proper fix: Pydantic validation at API boundary
     
-    Reported: Issue #247 (2 weeks ago)
+    Reported: Issue #447 (2 weeks ago)
     Impact: 23% of search requests fail
     Workaround: Frontend hardcodes dietary_restrictions=[] (breaks semantics)
     """
@@ -1088,7 +1088,7 @@ def get_search_metrics() -> dict:
 # - Manual metrics (no proper monitoring)
 # - Broken caching (memory leak - Issue #183)
 # - No input validation (accepts garbage)
-# - THE BUG: Line 447 crashes for 23% of users (Issue #247)
+# - THE BUG: Line 447 crashes for 23% of users (Issue #447)
 # 
 # Architect's recommendation (@search-architect):
 # Break into 4 modules:
