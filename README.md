@@ -42,25 +42,25 @@ Multiple agent capabilities working together in a continuous workflow:
 
 ## The Story: FlavorHub's Recipe Manager is a critical component that allows users to search and manage their recipes. A recent update introduced a bug causing crashes for 30% of users. The error logs are overwhelming, and the root cause is unclear. The CTO has given you 2 hours to not only fix the bug but also refactor the system to prevent future issues.
 
-### **Experiment 1: Creating Order from Chaos** (20 min)
+### **Experiment 1: Creating Order from Chaos** 
 **The Problem:** Production errors flooding in, no structured documentation  
 **Agents Used:** Agent Skills + GitHub MCP  
 **You Learn:** Create agent skill that analyzes error logs → automatically creates GitHub NULL_DIETARY_BUG with root cause analysis  
 **Outcome:** Crisis documented and triaged in 5 minutes
 
-### **Experiment 2: Understanding the Real Problem** (25 min)
+### **Experiment 2: Understanding the Real Problem** 
 **The Problem:** Is this just a null check or symptoms of deeper architectural debt?  
 **Agents Used:** Custom Agent (.agent.md)  
 **You Learn:** Build custom Search Architect agent → scans entire codebase → discovers 1103-line monolith with God Object anti-pattern, 74 magic numbers, broken caching, and dead code  
 **Outcome:** Root cause identified: architectural refactor required, not band-aid patch
 
-### **Experiment 3: Solution Design & Implementation** (63 min)
+### **Experiment 3: Solution Design & Implementation** 
 **The Problem:** Need architectural refactor plan + rapid implementation of 4 clean modules  
 **Agents Used:** Spec Kit (constitution → specify → plan → tasks → implement) + Copilot CLI + @workspace  
 **You Learn:** Establish governance constitution → generate detailed 4-module specification → create technical plan → break into tasks → use CLI for project setup → generate 4 modules with /speckit.implement → wire everything together with @workspace  
 **Outcome:** Complete blueprint AND implementation - 1103-line monolith refactored into 4 clean modules <300 lines each, both issues fixed (null handling + caching leak)
 
-### **Experiment 4: Validation & Quality Gates** (20 min)
+### **Experiment 4: Validation & Quality Gates** 
 **The Problem:** Ensure solution actually meets standards before deployment  
 **Agents Used:** /speckit.analyze + /speckit.checklist  
 **You Learn:** Validate constitution compliance → identify gaps → generate quality checklist → systematically verify readiness  
