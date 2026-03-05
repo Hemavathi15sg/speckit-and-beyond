@@ -64,17 +64,17 @@ Create a custom agent that's an expert in search systems.
 
 3. Select **Custom Agents** from the menu
 
-   ![Configure Menu - Select Custom Agents](../assets/customagent.png)
+   ![Configure Menu - Select Custom Agents](assets/customagent.png)
    *The Configure menu with Custom Agents option highlighted*
 
 4. Click **➕ New Custom Agent** button
 
-   ![New Custom Agent Button](../assets/newcustomagent.png)
+   ![New Custom Agent Button](assets/newcustomagent.png)
    *Select "New custom agent..." to create a specialized agent*
 
 5. In the file dialog, select location:
 
-   ![Select Location Dialog](../assets/githubcustomagent.png)
+   ![Select Location Dialog](assets/githubcustomagent.png)
    *Choose .github\agents as the location for your custom agent*
    - Enter agent name: `search-architect`
    - Click Save
@@ -131,7 +131,7 @@ When analyzing search code, you autonomously:
 
 💡 **Optional - Configure Tools:** If your agent needs to perform actions (create files, run commands, etc.), you can enable specific tools in the frontmatter by uncommenting the `tools:` line and specifying which tools to enable. For analysis-only agents like search-architect, tools are not required.
 
-   ![Configure Tools](../assets/configuretools.png)
+   ![Configure Tools](assets/configuretools.png)
    *Tools can be enabled in agent configuration as needed*
 
 **2.1.3** Save the file and reload VS Code window
@@ -152,7 +152,7 @@ Ask your architect agent to analyze the NULL_DIETARY_BUG deeply.
 
 **2.2.2** Click the **Agent** dropdown and select **search-architect** from the list
 
-   ![Select Search Architect Agent](../assets/customarchitectagent.png)
+   ![Select Search Architect Agent](assets/customarchitectagent.png)
    *The search-architect custom agent available in the agents dropdown*
 
 **2.2.3** Enter your prompt:

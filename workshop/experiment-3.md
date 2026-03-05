@@ -45,7 +45,7 @@ Install GitHub Spec Kit extension for specification-driven development.
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 ```
-![GitHub Spec Kit](../assets/speckit.png)
+![GitHub Spec Kit](assets/speckit.png)
    *GitHub Spec Kit - Specification-driven development framework*
 
 **3.0.2** Initialize Spec Kit in your existing project:
@@ -60,7 +60,7 @@ specify init --here
 
 When prompted "Initialize Spec Kit in existing repository?", type **yes** to continue
 
-   ![Spec Kit Same Repo Confirmation](../assets/specsamerepo.png)
+   ![Spec Kit Same Repo Confirmation](assets/specsamerepo.png)
    *Select 'yes' to initialize Spec Kit in the existing repository*
 
 **3.0.3** Verify Spec Kit slash commands are available:
@@ -72,7 +72,7 @@ Open Copilot Chat and type `/spec` - you should see:
 - `/speckit.implement` - Generate code from specs
 - `/speckit.analyze` - Validate specifications
 
-   ![Spec Kit Slash Commands](../assets/specfinal.png)
+   ![Spec Kit Slash Commands](assets/specfinal.png)
    *Spec Kit slash commands available in Copilot Chat*
 
 ### What You Created

@@ -94,17 +94,17 @@ Build an agent skill that can analyze production errors intelligently.
 
 3. Select **Skills** from the menu
 
-   ![Configure Menu - Select Skills](../assets/skills.png)
+   ![Configure Menu - Select Skills](assets/skills.png)
    *The Configure menu with Skills option highlighted*
 
 4. Click **➕ New Skill** button
 
-   ![New Skill Button](../assets/newskill.png)
+   ![New Skill Button](assets/newskill.png)
    *Select "New skill..." to create a custom skill*
 
 5. In the file dialog, select location:
 
-   ![Select Location Dialog](../assets/githubskills.png)
+   ![Select Location Dialog](assets/githubskills.png)
    *Choose .github\skills as the location for your skill*
    - Enter skill name: `issue-analyzer`
    - Click Save
@@ -221,7 +221,7 @@ GitHub maintains a curated collection of reusable skills. Let's add the official
 
 1. Visit [GitHub's Awesome Copilot Skills Library](https://github.com/github/awesome-copilot/tree/main/skills)
 
-   ![Awesome Copilot Skills](../assets/awesomeskills.png)
+   ![Awesome Copilot Skills](assets/awesomeskills.png)
    *GitHub's official skills library with community-contributed skills*
 
 2. Create the `github-issues` skill folder structure:
@@ -270,7 +270,7 @@ Labels: bug, critical, production, search
 - `#mcp_github_assign_copilot_to_issue` - Automatically assigns the created issue to @copilot agent
 - Copilot creates the issue, assigns it to itself, and will create **PR #2** with a fix
 
-![GitHub Issue Created](../assets/issuecreated.png)
+![GitHub Issue Created](assets/issuecreated.png)
 *Issue #1 created with proper formatting and automatically assigned to @copilot*
 
 **Expected Output:**
@@ -285,7 +285,7 @@ Labels: bug, critical, production, search
 - The fix is **technically correct** - solves the immediate crash
 - But should we merge it, or investigate deeper first?
 
-![Copilot PR Created](../assets/copilotpr.png)
+![Copilot PR Created](assets/copilotpr.png)
 *PR #2 automatically created by @copilot with the null check fix*
 
 ---
