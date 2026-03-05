@@ -12,9 +12,9 @@ This is a **real-world crisis simulation** showing how GitHub agents transform d
 
 ---
 
-## 🤖 What You'll Master
+## What You'll Master
 
-Five agent capabilities working together in a continuous workflow:
+Multiple agent capabilities working together in a continuous workflow:
 
 **Agent Skills** → Autonomous problem analysis and documentation  
 **Custom Agents** → Specialized expertise (architecture, security, domain knowledge)  
@@ -27,7 +27,7 @@ Five agent capabilities working together in a continuous workflow:
 
 ---
 
-## 📋 Mission Prerequisites
+## Mission Prerequisites
 
 ✅ **VS Code** with GitHub Copilot extension  
 ✅ **Python 3.11+** installed  
@@ -36,11 +36,11 @@ Five agent capabilities working together in a continuous workflow:
 ✅ **Node.js 18+** (for Copilot CLI)  
 ✅ **2 focused hours** to complete the mission
 
-> 💡 **Starter Code Provided:** FlavorHub Recipe Manager brownfield application with intentional issues for learning
+> **Starter Code Provided:** FlavorHub Recipe Manager brownfield application with intentional issues for learning
 
 ---
 
-## 🎯 The Story: 4 Connected Experiments
+## The Story: FlavorHub's Recipe Manager is a critical component that allows users to search and manage their recipes. A recent update introduced a bug causing crashes for 30% of users. The error logs are overwhelming, and the root cause is unclear. The CTO has given you 2 hours to not only fix the bug but also refactor the system to prevent future issues.
 
 ### **Experiment 1: Creating Order from Chaos** (20 min)
 **The Problem:** Production errors flooding in, no structured documentation  
