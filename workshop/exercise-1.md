@@ -32,7 +32,7 @@ By end of this experiment, you will:
 ## 📝 Exercise 1.0: Reproduce the Bug (5 min)
 
 ### Task
-Before analyzing the error, let's reproduce it to get the actual stack trace and understand the problem.
+Before analyzing the error, let's reproduce it to get the actual stack trace and understand the problem. Navigate to vscode terminal and clone the forked repository, then run the test script to see the error in action.
 
 ### Steps
 
@@ -157,7 +157,7 @@ Use your skill to analyze the production error.
 
 ### Steps
 
-**1.2.1** In the terminal where you ran `python test_bug.py`, select the error output (the crash section with stack trace)
+**1.2.1** In the terminal where you ran `python test_bug.py`, **select the complete error output (the crash section with stack trace) which sets a context to copilot using #terminalSelection**
 
 **1.2.2** Open Copilot Chat and invoke your skill:
 ```
@@ -169,7 +169,7 @@ Look at #terminalSelection using #file:SKILL.md analyse the production error
 - `#file:SKILL.md` - References your custom skill file
 - Copilot reads the SKILL.md and applies its analysis format
 
-### Expected Output
+### Expected Output (output may vary based on your model's analysis)
 ```
 ANALYSIS COMPLETE
 
@@ -203,15 +203,8 @@ Your agent **autonomously analyzed** the error, traced it across 3 files, estima
 
 ## 📝 Exercise 1.3: Auto-Create GitHub Issue with Skill Composition (6 min)
 
-### Task
-Use **skill composition**: Combine your custom @issue-analyzer with official @github-issues skill.
-
-### Concept: Skill Composition
-Instead of one skill doing everything, compose specialized skills:
-- **@issue-analyzer** → Analyzes errors (your custom skill)
-- **@github-issues** → Creates issues (GitHub's official skill)
-
-This is the **professional pattern** for reusable agent capabilities.
+### Task 
+Create a GitHub issue from the analysis using your skill and GitHub MCP.
 
 ### Steps
 
@@ -219,12 +212,12 @@ This is the **professional pattern** for reusable agent capabilities.
 
 GitHub maintains a curated collection of reusable skills. Let's add the official `github-issues` skill:
 
-1. Visit [GitHub's Awesome Copilot Skills Library](https://github.com/github/awesome-copilot/tree/main/skills)
+1. Visit [GitHub's Awesome Copilot Skills Library](https://github.com/github/awesome-copilot/tree/main/skills/github-issues)
 
    ![Awesome Copilot Skills](assets/awesomeskills.png)
    *GitHub's official skills library with community-contributed skills*
 
-2. Create the `github-issues` skill folder structure:
+2. Create the `github-issues` skill folder structure in your repo inside VS Code or terminal with the following command:
    ```bash
    mkdir -p .github/skills/github-issues/references
    ```
@@ -233,21 +226,15 @@ GitHub maintains a curated collection of reusable skills. Let's add the official
    - Navigate to the `github-issues` skill in the [Awesome Copilot Skills repository](https://github.com/github/awesome-copilot/blob/main/skills/github-issues/SKILL.md)
    - Click **Raw** button to view the raw markdown
    - Copy the entire content
-   - Paste into your `.github/skills/github-issues/SKILL.md` file
+   - Paste into your `.github/skills/github-issues/SKILL.md` file (VS Code → File Explorer → .github → skills → github-issues → New File → SKILL.md)
    - Save the file
 
 4. Copy the reference template:
-   - Navigate to [issue-template.md](https://github.com/github/awesome-copilot/blob/main/skills/github-issues/references/issue-template.md) in the same repository
+   - Navigate to [issue-template.md](https://github.com/github/awesome-copilot/blob/main/skills/github-issues/references/templates.md) in the same repository
    - Click **Raw** button
    - Copy the entire content
-   - Paste into your `.github/skills/github-issues/references/issue-template.md` file
+   - Paste into your `.github/skills/github-issues/references/templates.md` file (VS Code → File Explorer → .github → skills → github-issues → references → New File → templates.md)
    - Save the file
-
-5. Verify the skill structure:
-   ```bash
-   ls .github/skills/github-issues/
-   # You should see: SKILL.md and references/
-   ```
 
 💡 **What You Created:**
 - ✅ Official GitHub Issues skill for consistent formatting
@@ -257,6 +244,10 @@ GitHub maintains a curated collection of reusable skills. Let's add the official
 **1.3.2** Reload VS Code window (Ctrl+Shift+P → "Developer: Reload Window")
 
 **1.3.3** In Copilot Chat, create the issue and assign to Copilot:
+**Note** When you run the below command, use **#** it refers to list of folders/files so select the appropriate one from the dropdown. 
+
+![Awesome Copilot Skill selection](assets/skillselect.png)
+   *GitHub's official skills library with community-contributed skills*
 ```
 Create a GitHub issue based on the #file:issue-analyzer analysis from the previous conversation. Use #file:github-issues format and use #mcp_github_assign_copilot_to_issue to fix the issue.
 

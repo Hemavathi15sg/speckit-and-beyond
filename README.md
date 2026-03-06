@@ -84,10 +84,8 @@ Multiple agent capabilities working together in a continuous workflow:
 
 **You have 2 hours to save FlavorHub.**
 
-**Clone the repository:**
-```bash
-git clone https://github.com/CanarysAutomations/speckit-and-beyond.git
-```
+**Fork the repository:**
+
 
 🚀 **Begin Mission: [Exercise 1: Creating Order from Chaos](workshop/exercise-1.md)**
 
