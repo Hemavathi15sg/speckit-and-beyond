@@ -109,77 +109,46 @@ Provide code examples for fixing each blocker.
 ![Spec Kit Checklist](assets/speckitchecklist.png)
 *Running checklist agent in Copilot CLI to generate quality gates and fix blockers*
 
+**Note:** The agent may ask for permission to apply fixes. You can choose to review and apply them one by one, or all at once depending on your requirement.
+
+![Fixes Permission](assets/fixes.png)
+*Agent requesting permission to apply fixes*
+
 ### Expected Output
 
-**Part 1: Generated Checklist**
+> **Note:** Your output may vary based on your implementation. Below is an example.
 
-> **Note:** Your checklist may vary based on code analysis. Below is an example output.
+```
+Checklist created with 15 items (5 critical, 5 important, 5 nice-to-have), and I fixed all required 
+critical blockers with tests and route handling.
 
-```markdown
-# Pre-Deployment Checklist: Search Validation Enhancement
-
-## 🔴 Critical (Must Pass - BLOCKERS)
-- [ ] Add regression test for NULL_DIETARY_BUG (null dietary_restrictions)
-- [ ] Achieve 80% test coverage (currently 72%, need +8%)
-- [ ] Manual reproduction test passed (run test_bug.py with validation)
-- [ ] API backward compatibility verified (no breaking changes)
-
-## ⚠️ Important (Should Pass)
-- [ ] Edge case tests for all validators
-- [ ] Error boundary tests (graceful degradation verified)
-- [ ] Input sanitization review completed
-- [ ] Monitoring/alerting configured for validation failures
-- [ ] Rollback plan documented (easy - single commit revert)
-
-## 💡 Nice to Have
-- [ ] Documentation updated with validation examples
-- [ ] Team briefing on new validation patterns
-- [ ] Add more comprehensive input fuzzing tests
-- [ ] Performance impact measured (should be negligible)
-
-## 📊 Current Status
-Critical: 1/4 complete (25%) ← CANNOT DEPLOY YET
-Important: 1/5 complete (20%)
-Nice to Have: 0/4 complete
+Critical fixes implemented and validated:
+- NULL_DIETARY_BUG regression tests added (test_bug.py, tests\test_validation_regression.py)
+- coverage gate now passes at 86% (.coveragerc + targeted tests)
+- API backward compatibility verified (tests\test_api_backward_compat.py, tests\test_app_endpoints.py)
+- missing validation-path tests added (invalid dietary/type/range checks)
+- verification command: python -m pytest test_bug.py tests --cov=. --cov-fail-under=80 -q → 20 passed
 ```
 
-**Part 2: Code to Fix Blockers**
-
-Example code generated to address critical blockers:
+Example fixes provided:
 
 ```python
-"""Regression test for NULL_DIETARY_BUG: null dietary restrictions crash"""
-import pytest
-from search import SearchQuery, parse_search_request
+# 1) NULL_DIETARY_BUG regression (test_bug.py)
+def test_null_dietary_regression_does_not_crash_for_custom_user():
+    user = User(id=uuid4(), name="Test User", email="test@example.com", dietary_restrictions=None)
+    response = search_recipes({"query": "pasta", "cuisine": "Italian"}, user)
+    assert "results" in response and "pagination" in response
 
-def test_issue_247_null_dietary_restrictions():
-    """Ensure null dietary_restrictions don't crash (NULL_DIETARY_BUG)"""
-    
-    # This used to cause TypeError before fix
-    raw_request = {
-        "query": "pasta recipes",
-        "dietary_restrictions": None  # ← The bug scenario from production
-    }
-    
-    result = parse_search_request(raw_request)
-    
-    # Should default to empty list via Pydantic validator, not crash
-    assert result.dietary_restrictions == []
-    assert result.query == "pasta recipes"
-    
-def test_issue_247_empty_list_handled():
-    """Verify empty list also works"""
-    raw_request = {
-        "query": "soup",
-        "dietary_restrictions": []
-    }
-    result = parse_search_request(raw_request)
-    assert result.dietary_restrictions == []
+# 2) Missing validation tests (tests/test_validation_regression.py)
+def test_invalid_dietary_value_rejected_at_boundary():
+    with pytest.raises(ValidationError):
+        validate_search_request({"dietary_restrictions": ["banana"]})
 
-def test_searchquery_model_direct():
-    """Test SearchQuery model directly with None"""
-    query = SearchQuery(query="test", dietary_restrictions=None)
-    assert query.dietary_restrictions == []  # Validator converted None → []
+# 3) API backward compatibility + validation status semantics (api/routes.py)
+results = search_recipes(request_data, user)
+if isinstance(results, dict) and results.get("status_code") == 400:
+    raise HTTPException(status_code=400, detail=results.get("details"))
+return results
 ```
 
 **4.2.2** Verify fixes by running relevant tests:
