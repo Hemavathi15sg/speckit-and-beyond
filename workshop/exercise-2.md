@@ -1,4 +1,4 @@
-# Experiment 2: Understanding the Real Problem
+# Exercise 2: Understanding the Real Problem
 
 > **Time:** 3:20 PM - 3:45 PM (25 minutes)  
 > **Status:** Copilot's PR ready. But should we merge it?
@@ -294,9 +294,9 @@ In the next experiment, we'll use these principles to guide our ARCHITECTURAL RE
 
 We have principles, but no specification. How do we translate *"break into 4 modules following clean architecture"* into concrete implementation tasks?
 
-**Continue to:** [Experiment 3: Designing the Solution](experiment-3.md)
+**Continue to:** [Exercise 3: Solution Design & Implementation](exercise-3.md)
 
-Time to use: **Instruction Files + Spec Kit** for governance-driven design.
+Time to use: **Spec Kit** for governance-driven design.
 
 
 

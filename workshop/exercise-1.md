@@ -1,4 +1,4 @@
-# Experiment 1 Creating Order from Chaos
+# Exercise 1: Creating Order from Chaos
 
 > **Time:** 3:00 PM - 3:20 PM (20 minutes)  
 > **Crisis State:** 500+ errors, users angry, no structure
@@ -316,7 +316,7 @@ Lets merge, However should we check for deeper architectural issues? Is search.p
 
 ---
 
-## 🚀 Next: [Experiment 2](experiment-2.md)
+## 🚀 Next: [Exercise 2](exercise-2.md)
 
 **Decision Point:**
 - ✅ NULL_DIETARY_BUG documented as **GitHub issue #1**

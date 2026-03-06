@@ -1,4 +1,4 @@
-# Experiment 4: Validation & Quality Gates
+# Exercise 4: Validation & Quality Gates
 
 > **Time:** 4:48 PM - 5:08 PM (20 minutes)  
 > **Status:** Code complete. But is it production-ready?

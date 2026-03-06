@@ -1,4 +1,4 @@
-# Experiment 3: Solution Design & Implementation
+# Exercise 3: Solution Design & Implementation
 
 > **Time:** 3:45 PM - 4:48 PM (63 minutes)  
 > **Status:** Decision made to refactor. Need specification, technical plan, and implementation.
@@ -433,11 +433,11 @@ Keep __init__.py clean (<50 lines), just orchestration logic.
 
 ---
 
-## 🚀 Next: Experiment 4
+## 🚀 Next: Exercise 4
 
 Code is written, tests pass. But does it meet our constitution? Are we actually ready for production?
 
-**Continue to:** [Experiment 4: Validation & Quality Gates](experiment-4.md)
+**Continue to:** [Exercise 4: Validation & Quality Gates](exercise-4.md)
 
 Time to use: **/speckit.analyze + checklist** for systematic quality validation.
 
